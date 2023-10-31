@@ -6,7 +6,7 @@ public:
     ConsentiumOTA(); 
     void begin();
     void initWiFi(const char*, const char*);
-    void checkAndPerformUpdate(String, const char*, const char*); 
+    void checkAndPerformUpdate(const char*); 
 };
 
 #endif

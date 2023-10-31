@@ -14,16 +14,12 @@
 
 ConsentiumOTA ota;
 
-#define FIRMWARE_VERSION "0.1" // change for every version
-
-int led_pin = 23;
-
 const char *ssid = "YOUR_WIFI_SSID"; // Add WiFi SSID
 const char *pass = "YOUR_WIFI_PASSWORD"; // Add WiFi password
 constexpr int interval = 7000; // Wait for 7 seconds
+const char* currentFirmwareVersion = "YOUR_FIRMWARE_VERSION"; // change for every version
 
-const char* firmware_version = "http://192.168.5.142:3000/firmware/version";
-const char* download_firmware = "http://192.168.5.142:3000/firmware/blink.bin";
+int led_pin = 23;
 
 void setup() {
   ota.begin(); // Initialize IoT board
@@ -39,8 +35,5 @@ void loop(){
   digitalWrite(led_pin, LOW);
   delay(interval);
 
-
-  ota.checkAndPerformUpdate(FIRMWARE_VERSION, firmware_version, download_firmware);
-  
-  
+  ota.checkAndPerformUpdate(currentFirmwareVersion); //checks for firmware update
 }
