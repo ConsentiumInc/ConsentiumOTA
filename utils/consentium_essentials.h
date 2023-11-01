@@ -1,5 +1,5 @@
 
-const char* versionURL = "http://192.168.0.111:3000/firmware/version";
-const char* firmwareURL = "http://192.168.0.111:3000/firmware/blink.bin";
+const char* versionURL = "https://firmware.blackbox.io.in/firmware/version";
+const char* firmwareURL = "https://firmware.blackbox.io.in/firmware/blink.bin";
 
 

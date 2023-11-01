@@ -1,12 +1,15 @@
 #include <HTTPUpdate.h>
+#include <WiFiClientSecure.h> // Include the WiFiClientSecure library
+
 #include <ConsentiumOTA.h>
 
-#include "utils/consentium_essentials.h"
+#include <certs/server_certificates.h>
+#include <utils/consentium_essentials.h>
 
-WiFiClient client;
+WiFiClientSecure client;
+HTTPClient http;
 
 const char* getRemoteFirmwareVersion(const char* firmware_url) {
-  HTTPClient http;
   http.begin(firmware_url);
   int httpCode = http.GET();
   static char versionBuffer[128]; // Assuming version won't exceed 128 characters
@@ -22,6 +25,8 @@ ConsentiumOTA::ConsentiumOTA() {}
 
 void ConsentiumOTA::begin() {
   Serial.begin(115200);
+  client.setInsecure();
+  //client.setCACert(consentium_root_ca);
 }
 
 void ConsentiumOTA::initWiFi(const char* ssid, const char* password) {
